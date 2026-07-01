@@ -77,7 +77,7 @@ GOOGLE_API_KEY=your_api_key_here
 ```
 obtain a free API key from **Google AI Studio**.
 
-# 📚 Using the System
+
 
 ## Ingest (Index) PDFs
 
