@@ -7,13 +7,12 @@ This project implements a **Retrieval-Augmented Generation (RAG)** system for an
 ## 📁 Project Structure
 
 ```text
-rag_assignment/
 ├── rag.py                 # Main application (ingest + query)
-├── .env                   # Environment variables template
+├── get_metrics.py         # Evaluation script (computes Recall@5, MRR, Precision@5)
+├── .env.example           # Environment variables template (copy to .env)
 ├── docs/                  # Folder containing PDF files
-│   └── sample.pdf
-└── README.md              # Project documentation
-```
+│   └── sample.pdf         # Sample document (LaTeX guide)
+└── README.md              # Project documentation (this file)
 
 ---
 
@@ -113,6 +112,18 @@ and other tools.
 ⚡ LATENCY: 142.34 ms
 🔢 EST. TOKENS: 450
 ============================================================
+
+## Evaluation (Retrieval Metrics)
+
+python get_metrics.py
+
+output-
+Average Recall@5: 0.650
+Average MRR: 0.328
+Average Precision@5: 0.220
+nDCG@5 (approx): 0.585 (estimated)
+
+
 
 ## Vector Store
 
