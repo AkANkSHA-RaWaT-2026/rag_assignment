@@ -23,7 +23,7 @@ rag_assignment/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/rag_assignment.git
+git clone https://github.com/AkANkSHA-RaWaT-2026/rag_assignment.git
 cd rag_assignment
 ```
 ---
