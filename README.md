@@ -9,8 +9,7 @@ This project implements a **Retrieval-Augmented Generation (RAG)** system for an
 ```text
 rag_assignment/
 ├── rag.py                 # Main application (ingest + query)
-├── requirements.txt       # Python dependencies
-├── .env.example           # Environment variables template
+├── .env                   # Environment variables template
 ├── docs/                  # Folder containing PDF files
 │   └── sample.pdf
 └── README.md              # Project documentation
@@ -48,13 +47,7 @@ source venv/bin/activate
 
 ### 3. Install dependencies
 
-If `requirements.txt` is available:
-
-```bash
-pip install -r requirements.txt
-```
-
-Otherwise, install the required packages manually:
+install the required packages :
 
 ```bash
 pip install chromadb pypdf python-dotenv google-genai
@@ -64,11 +57,7 @@ pip install chromadb pypdf python-dotenv google-genai
 
 ### 4. Configure your Gemini API key
 
-Create a `.env` file (or copy `.env.example`) and add your API key:
-
-```bash
-cp .env.example .env
-```
+Create a `.env` file  and add your API key:
 
 Inside the `.env` file:
 
