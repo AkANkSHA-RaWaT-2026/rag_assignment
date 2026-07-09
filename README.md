@@ -1,6 +1,7 @@
 # RAG System – Cost-Efficient QA over PDFs
 
-This is a learning project built with assistance from AI tools to understand RAG pipelines
+This is a learning project built with assistance from AI tools to understand RAG pipelines.
+
 This project implements a **Retrieval-Augmented Generation (RAG)** system for answering questions over PDF documents. It indexes PDFs into a local **ChromaDB** vector database and uses **Google Gemini** to generate grounded answers with source citations.
 
 ---
