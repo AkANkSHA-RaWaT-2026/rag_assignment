@@ -165,35 +165,6 @@ The trade-off: Chroma runs as a single embedded process rather than a distribute
 
 ---
 
-## Cost Comparison: ChromaDB (self-hosted) vs. Managed Vector DB
-
-Estimates assume a managed provider charging for always-on pod capacity (e.g. Pinecone-style pricing), 1536-dimension embeddings, and light query volume (a few thousand queries/month) — the scenario where fixed infrastructure cost dominates.
-
-| Vectors    | Managed DB (est. monthly) | ChromaDB self-hosted (est. monthly)         | Notes                                                                 |
-|------------|---------------------------|----------------------------------------------|------------------------------------------------------------------------|
-| 100K       | ~$70–100                  | ~$5–10 (small VM/disk only)                  | Managed pod cost dominates even at this small scale                   |
-| 1M         | ~$200–300                 | ~$15–30 (larger disk, same VM class)         | Chroma cost grows with disk, not with a per-vector "pod tier" jump    |
-| 10M        | ~$800–1,200+              | ~$50–120 (bigger VM, possibly sharded)       | At this scale, self-hosted needs real ops attention (backups, HA)    |
-
-**Assumptions stated explicitly:**
-- Managed DB pricing assumes always-on pods sized to the vector count, independent of query volume — the core problem this assignment targets.
-- Self-hosted cost is just compute + disk (a small cloud VM), and excludes engineering time to maintain it.
-- Embedding generation cost (Gemini API calls) is identical either way and excluded from this table, since it depends on ingestion volume, not storage choice.
-
-**Trade-off accepted:** self-hosted ChromaDB has no built-in high availability, automatic backups, or horizontal scaling — at 10M+ vectors with real uptime requirements, the operational burden (and risk) shifts back toward justifying a managed DB, even at higher cost.
-
----
-
-## Discussion
-
-**When would I switch back to a managed vector DB?**
-Once query volume or uptime requirements exceed what a single self-hosted instance can reasonably guarantee — specifically, if this needed multi-region availability, automatic failover, or if the team lacked bandwidth to own backups and scaling. For a lightly-queried corpus under ~10M vectors with no strict SLA, the cost savings of ChromaDB clearly outweigh the operational risk.
-
-**Was retrieval or generation the weaker link?**
-Based on the evaluation results in `eval_results.json`, retrieval numbers should be examined first: a low `nDCG@5`/`Recall@5` relative to `Precision@5` suggests the embedding model or chunking strategy is misranking relevant content, while strong retrieval metrics paired with weak answer faithfulness would point to the generation/prompting step instead. *(Fill in with your specific numbers once you've run `get_metrics.py` — e.g., "Recall@5 of 0.65 with Precision@5 of only 0.22 suggests the top-k is noisy, meaning retrieval is the weaker link here.")*
-
----
-
 ## Features
 
 - PDF document ingestion with idempotent re-ingestion (no duplicate vectors)
